@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Container, FormDefault, TituloPage } from "../assets/style/DefaultStyle"
 
 export default function NovoRegistro(){

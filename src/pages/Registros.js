@@ -1,6 +1,6 @@
 import { Container, TituloPage } from "../assets/style/DefaultStyle";
 import { useState } from "react";
-import doorout from "../assets/img/sign-out.png";
+import sign_out from "../assets/img/sign-out.png";
 import styled from "styled-components";
 import Registro from "../components.js/Registro";
 import BotoesRegistro from "../components.js/BotoesRegistro";
@@ -12,7 +12,7 @@ export default function Registros() {
         <Container>
             <TituloPage>
                 <p>Olá, fulano</p>
-                <img src={doorout} alt="botão deslogar" />
+                <img src={sign_out} alt="botão deslogar" />
             </TituloPage>
 
             <ContainerRegistros>
