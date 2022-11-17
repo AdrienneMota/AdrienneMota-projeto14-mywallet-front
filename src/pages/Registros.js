@@ -1,29 +1,36 @@
-import { Container } from "../assets/style/DefaultStyle";
+import { Container, TituloPage } from "../assets/style/DefaultStyle";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import doorout from "../assets/img/sign-out.png";
 import styled from "styled-components";
 import Registro from "../components.js/Registro";
-import { useState } from "react";
+
 
 export default function Registros() {
     const [status, setStatus] = useState(true)
+    const navegate = useNavigate()
+
+    function callRegistro(tipo){ // transformar isso num context api
+        navegate('/novoregistro', {state: {tipo}})
+    }
 
     return (
         <Container>
-            <BoasVindas>
+            <TituloPage>
                 <p>Olá, fulano</p>
                 <img src={doorout} alt="botão deslogar" />
-            </BoasVindas>
+            </TituloPage>
 
             <ContainerRegistros>
                 <Registro status={status}/>
             </ContainerRegistros>
 
             <ContainerBtn>
-                <button>
+                <button onClick={() => callRegistro('entrada')}>
                     <ion-icon name="add-circle-outline"></ion-icon>
                     <p>Nova Entrada</p>
-                </button>
-                <button>
+                </button>                
+                <button onClick={() => callRegistro('saida')}>
                     <ion-icon name="remove-circle-outline"></ion-icon>
                     <p>Nova Saída</p>
                 </button>
@@ -32,18 +39,6 @@ export default function Registros() {
     )
 }
 
-const BoasVindas = styled.div`
-    margin-top: 25px;
-    height: 31px;
-    width: 326px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
-    font-size: 26px;
-    color: #FFFFFF;
-    font-weight: 700;
-`
 const ContainerRegistros = styled.div`
     height: 446px;
     width: 326px;

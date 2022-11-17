@@ -3,6 +3,7 @@ import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import Registros from './pages/Registros'
 import GlobalStyle from './assets/style/GlobalStyle'
+import NovoRegistro from './pages/NovoRegistro'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/' element={<Login/>}/>
         <Route path='/cadastro' element={<Cadastro/>}/>
         <Route path='/registros' element={<Registros/>}/>
+        <Route path='/novoregistro' element={<NovoRegistro/>}/>
       </Routes>
     </BrowserRouter>
   );

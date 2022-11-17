@@ -51,3 +51,16 @@ export const LinkDefault = styled.a`
     color: #FFFFFF;
     cursor: pointer;
 `
+
+export const TituloPage = styled.div`
+    margin-top: 25px;
+    height: 31px;
+    width: 326px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    font-size: 26px;
+    color: #FFFFFF;
+    font-weight: 700;
+`
