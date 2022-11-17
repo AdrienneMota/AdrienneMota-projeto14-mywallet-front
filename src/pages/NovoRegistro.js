@@ -1,8 +1,8 @@
-import { useLocation } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { Container, FormDefault, TituloPage } from "../assets/style/DefaultStyle"
 
 export default function NovoRegistro(){
-    const {tipo} = useLocation().state
+    const {tipo} = useParams()
 
     return(        
         <Container>

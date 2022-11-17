@@ -18,6 +18,7 @@ export const FormDefault = styled.div`
         color: #FFFFFF;
         margin-bottom: 24px;
         text-align: center;
+        font-family: 'Saira Stencil One', cursive;
     }
 
     input{
