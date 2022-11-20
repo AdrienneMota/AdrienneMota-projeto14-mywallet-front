@@ -2,11 +2,14 @@ import { Container, TituloPage } from "../assets/style/DefaultStyle";
 import { useState } from "react";
 import sign_out from "../assets/img/sign-out.png";
 import styled from "styled-components";
-import Registro from "../components.js/Registro";
-import BotoesRegistro from "../components.js/BotoesRegistro";
+import Registro from "../components/Registro";
+import BotoesRegistro from "../components/BotoesRegistro";
 
 export default function Registros() {
-    const [status, setStatus] = useState(true)
+    const [status, setStatus] = useState(false)
+    const token = localStorage.getItem("token")
+
+    
 
     return (
         <Container>
