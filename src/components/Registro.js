@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
-export default function Registro({status}){
-    
+export default function Registro({status, registros}){
+       
     if(!status){
         return(
             <SemRegistro>
@@ -13,15 +13,16 @@ export default function Registro({status}){
 
     return(
         <>
-            <RegistroDefault>
-                <InformacoesdoRegisto>
-                    <p className="data">30/11</p>
-                    <p className="descricao"> Almoço Mãe</p>
-                </InformacoesdoRegisto>
-                <Valor>
-                    39,90
-                </Valor>
-            </RegistroDefault>
+            {registros.map( 
+                (registro) => 
+                <RegistroDefault>
+                    <InformacoesdoRegistro>
+                        <p className="data">{registro.date}</p>
+                        <p className="descricao">{registro.description}</p>
+                        </InformacoesdoRegistro>
+                        <Valor tipo={registro.type}>{registro.value}</Valor>
+                 </RegistroDefault>
+            )}            
         </>       
     )
 }
@@ -29,6 +30,7 @@ export default function Registro({status}){
 const SemRegistro = styled.p`
     font-weight: 400;
     color: #868686;
+    margin: 15px;
 `
 const RegistroDefault = styled.div`
     margin-top: 13px;
@@ -39,7 +41,7 @@ const RegistroDefault = styled.div`
     display: flex;
     justify-content: space-between;
 `
-const InformacoesdoRegisto = styled.div`
+const InformacoesdoRegistro = styled.div`
     .data{
         color: #C6C6C6;
         margin-right: 15px;
@@ -52,6 +54,5 @@ const InformacoesdoRegisto = styled.div`
 
 `
 const Valor = styled.p`
-    color: #03AC00;
+    color: ${ prop => (prop.tipo === 'entrada')? "#03AC00" : "#C70000"};
 `
-

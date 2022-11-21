@@ -6,18 +6,22 @@ import {Container, FormDefault, LinkDefault} from "../assets/style/DefaultStyle"
 import BASEURL from "../constants/url.js"
 
 export default function Cadastro(){
-    const [form, setForm] = useState({ name: "", email: "", password: ""})
     const navigate = useNavigate()
-
-    function handleForm(e){
-        const {name, value} = e.target
-        setForm({...form, [name]: value})
-    }
-
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirm] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    
+    
     function addUser(e){
         e.preventDefault()
-        axios.post(`${BASEURL}/sign-up`, form)
-            .then(res => navigate("/"))
+        
+        if(password !== confirmPassword) return alert('Confirmação de senha incorreta.')
+        
+        const body = { name, email, password }
+
+        axios.post(`${BASEURL}/sign-up`, body)
+            .then(res => navigate('/'))
             .catch((error) => console.log(error.response.data))
     }
 
@@ -30,22 +34,27 @@ export default function Cadastro(){
                     type="text" 
                     placeholder="Nome"
                     name="name"
-                    value={form.name}
-                    onChange={handleForm}/>
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}/>
                 <input 
                     type="email" 
                     placeholder="Email"
                     name="email"
-                    value={form.email}
-                    onChange={handleForm}/>
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}/>
                 <input 
                     type="password" 
                     placeholder="Senha"
                     name="password"
-                    value={form.password}
-                    onChange={handleForm}/>
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}/>
 
-                {/* <input type="password" placeholder="Confirme a senha"/> */}
+                <input 
+                    type="password" 
+                    placeholder="Confirme a senha"
+                    name="confirm"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirm(e.target.value)}/>
 
                 <button type="submit">Cadastrar</button>
             </form>
