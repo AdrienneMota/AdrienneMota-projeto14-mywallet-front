@@ -22,7 +22,7 @@ export default function Cadastro(){
 
         axios.post(`${BASEURL}/sign-up`, body)
             .then(res => navigate('/'))
-            .catch((error) => console.log(error.response.data))
+            .catch((error) => alert(error.response.data))
     }
 
     return(

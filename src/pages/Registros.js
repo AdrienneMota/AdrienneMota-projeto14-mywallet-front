@@ -7,12 +7,12 @@ import BotoesRegistro from "../components/BotoesRegistro";
 import BASEURL from "../constants/url"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import maskValue from "../helpers/maskValue";
 
 export default function Registros() {
     const [status, setStatus] = useState(true)
     const token = localStorage.getItem("token")
-    const [registros, setRegistros] = useState([])
+    const [registros, setRegistros] = useState(undefined)
     const [name, setName] = useState('')
     const [saldo, setSaldo] = useState(0)
     const navigate = useNavigate()
@@ -22,17 +22,12 @@ export default function Registros() {
             .then((res) => {
                 setRegistros(res.data.registriesUser)
                 setName(res.data.name)
-                setSaldo(res.data.registriesUser[res.data.registriesUser.length - 1].balance)
+                setSaldo(res.data.balance)               
             })
             .catch((error) => {
-                console.log(error.response.data)
+                alert(error.response.data)
             })
     }, [])
-
-    if(!registros){
-        setSaldo(0)
-        setStatus(false)
-    }
 
     function signOut(){
         axios.delete(`${BASEURL}/sign-out`, { headers : { "Authorization" : `Bearer ${JSON.parse(token)}`}})
@@ -44,6 +39,7 @@ export default function Registros() {
             })
     }
 
+
     return (
         <Container>
             <TituloPage>
@@ -52,11 +48,11 @@ export default function Registros() {
             </TituloPage>
             <Extrato>
                 <ContainerRegistros>
-                    <Registro status={status} registros={registros}/>
+                    <Registro status={status} setStatus={setStatus} registros={registros}/>
                 </ContainerRegistros>
                 <Saldo valor={saldo}>
                     <p>Saldo</p> 
-                    <p className="valoratual">{saldo}</p></Saldo>
+                    <p className="valoratual">{maskValue(saldo)}</p></Saldo>
             </Extrato>
             <BotoesRegistro/>
         </Container>    

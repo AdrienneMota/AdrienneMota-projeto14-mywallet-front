@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import styled from "styled-components"
+import maskValue from "../helpers/maskValue";
 
-export default function Registro({status, registros}){
-       
+export default function Registro({status, setStatus, registros}){
+
     if(!status){
         return(
             <SemRegistro>
@@ -13,14 +15,14 @@ export default function Registro({status, registros}){
 
     return(
         <>
-            {registros.map( 
+            {registros?.map( 
                 (registro) => 
                 <RegistroDefault>
                     <InformacoesdoRegistro>
-                        <p className="data">{registro.date}</p>
-                        <p className="descricao">{registro.description}</p>
+                        <p className="data">{registro?.date}</p>
+                        <p className="descricao">{registro?.description}</p>
                         </InformacoesdoRegistro>
-                        <Valor tipo={registro.type}>{registro.value}</Valor>
+                        <Valor tipo={registro?.type}>{maskValue(registro?.value)}</Valor>
                  </RegistroDefault>
             )}            
         </>       

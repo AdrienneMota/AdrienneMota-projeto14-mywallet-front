@@ -25,7 +25,7 @@ export default function Login(){
                 navigate('/registros')
             })
             .catch((error) => {
-                console.log(error.response.data)
+                alert(error.response.data.message)
             })
     }
     return(
